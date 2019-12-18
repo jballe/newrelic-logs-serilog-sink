@@ -29,5 +29,5 @@ jobs:
 
       - name: Publish NuGet package
         run: | 
-          nuget sources add -name "GitHub" -Source https://nuget.pkg.github.com/jballe/index.json -Username jballe -Password ${{ secrets.GITHUB_TOKEN }}
+          nuget sources add -name "GitHub" -Source https://nuget.pkg.github.com/${{ github.repository }}/index.json -Username jballe -Password ${{ secrets.GITHUB_TOKEN }}
           nuget push out\*.nupkg -Source "GitHub" -SkipDuplicate
