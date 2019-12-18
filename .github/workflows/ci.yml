@@ -24,6 +24,7 @@ jobs:
         run: |  
           cd NewRelicSink
           dotnet pack -c Release -o out -version 1.0.0  
+          dir out
 
       - name: Install NuGet client
         uses: warrenbuckley/Setup-Nuget@v1
@@ -31,4 +32,4 @@ jobs:
       - name: Publish NuGet package
         run: | 
           nuget sources add -name "GitHub" -Source https://nuget.pkg.github.com/jballe/index.json -Username jballe -Password ${{ secrets.GITHUB_TOKEN }}
-          nuget push **/*.nupkg -Source "GitHub" -SkipDuplicate
+          nuget push NewRelicSink\out\*.nupkg -Source "GitHub" -SkipDuplicate
